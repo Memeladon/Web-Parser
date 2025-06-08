@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список статей</title>
+  <style>
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    th { background: #f4f4f4; }
+  </style>
+</head>
+<body>
+  <h1>Статьи</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Заголовок</th><th>Автор</th><th>Дата</th><th>Ссылка</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for art in articles %}
+      <tr>
+        <td>{{ art.id }}</td>
+        <td>{{ art.title }}</td>
+        <td>{{ art.author }}</td>
+        <td>{{ art.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+        <td><a href="{{ art.source_url }}" target="_blank">Читать</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
