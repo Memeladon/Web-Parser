@@ -14,7 +14,7 @@ from .handlers import article_router
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION, root_path="/api")
 
 
-# ---------- Middleware ---------- #
+# ---------- Промежуточное ПО ---------- #
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -23,11 +23,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ------------ Routing ------------ #
+# ------------ Маршрутизация ------------ #
 app.include_router(article_router)
 
 
 @app.get("/")
 def home():
-    # health check
+    # проверка работоспособности
     return {"msg": "ok"}

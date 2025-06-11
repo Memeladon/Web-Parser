@@ -79,3 +79,11 @@ class ArticleRepository:
         except SQLAlchemyError as e:
             session.rollback()
             raise RuntimeError(f"|REPOSITORY| Ошибка базы данных: {str(e)}") from e
+
+    @staticmethod
+    def get_by_source_url(session: Session, source_url: str) -> Optional[Article]:
+        """Получение статьи по source_url"""
+        try:
+            return session.query(Article).filter(Article.source_url == source_url).one_or_none()
+        except SQLAlchemyError as e:
+            raise RuntimeError(f"|REPOSITORY| Ошибка базы данных: {str(e)}") from e
